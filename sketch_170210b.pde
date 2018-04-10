@@ -7,6 +7,7 @@ PImage[] phyto = new PImage[5];
 PImage egg, bubbleImg, death;
 float lvl;
 int score;
+int day;
 int currentTime;
 int startTime;
 int spawnTime;
@@ -124,6 +125,12 @@ void keyPressed() {
       currentScreen = 9;
     }
   }
+  
+  if (currentScreen == 9) {
+    if (keyCode == ' ') {
+      currentScreen = 0;
+    }
+  } 
 }
 
 //Intro
@@ -268,22 +275,27 @@ void screenThree() {
     running = true;
   }
   
-  spawnTimer = 14000;
+  spawnTimer = 10000;
   
   linearGradient(0, 0, width, height, b1, b2);
   makeBubbles();
   Time("February");
   Score(score);
+  Date(day);
   
   currentTime = millis() - startTime;
+  if (currentTime <= 2000) {
+    day = 1;
+  } else if (currentTime > 2000) {
+    day = round(currentTime/2000);
+  }
 
   player.create(copepod[0], 60);
   player.update();
   player.edge();
   player.display();
   makeFood();
-  println(currentTime);
-  if (currentTime > 60000) {
+  if (currentTime >= 56000) {
     stop = true;
   }
   if ((stop) && (score >= 5)) {
@@ -311,7 +323,7 @@ void screenFour() {
   textAlign(CENTER, TOP);
   text(stageName, width/2, 200);
   
-  String fact = "Fun fact";
+  String fact = "Fun fact: The character 'Plankton' in Spongebob Squarepants is a copepod";
   textSize(20);
   fill(255);
   textAlign(CENTER, TOP);
@@ -338,7 +350,7 @@ void screenFive() {
   textAlign(CENTER, TOP);
   text(stageName, width/2, 175);
   
-  String Goal = "Catch 50 phytoplankton so Carlos";
+  String Goal = "Catch at least 25 phytoplankton";
   textSize(20);
   fill(255);
   textAlign(CENTER, TOP);
@@ -365,14 +377,23 @@ void screenSix() {
   player.display();
   makeFood();
   Calendar();
+  Date(day);
+  
+  if (currentTime <= 60000) {
+    if (currentTime <= 2000) {
+      day = 1;
+    } else if (currentTime > 2000) {
+      day = round(currentTime/2000);
+    }
+  }
   
   if (currentTime > 360000) {
     stop = true;
   }
   
-  if ((stop) && (score >= 100)) {
+  if ((stop) && (score >= 25)) {
     pass = true;
-  } else if ((stop) && (score < 100)) {
+  } else if ((stop) && (score < 25)) {
     pass = false;
   } 
 }
@@ -429,6 +450,13 @@ void screenNine() {
   linearGradient(0, 0, width, height, b1, b2);
   makeBubbles();
   running = false;
+  
+  String stageName = "Carlos starved to death.";
+  textSize(25);
+  fill(255);
+  textAlign(CENTER, TOP);
+  text(stageName, width/2, 200);
+  
 }
 
 void makeBubbles() {
@@ -477,14 +505,14 @@ void Time(String mth) {
   textSize(20);
   fill(255);
   textAlign(LEFT, TOP);
-  text(mth, 0+10, 10);
+  text(mth, 0+40, 10);
 }
 
 void Date(int date) {
   textSize(20);
   fill(255);
   textAlign(LEFT, TOP);
-  text(date, 0+50, 10);
+  text(date, 0+10, 10);
 }
 
 //Calendar
@@ -495,22 +523,47 @@ void Calendar() {
     if ((currentTime > 60000) && (currentTime < 120000)) {
       months.remove(i);
       months.add(new String("April"));
+      if (currentTime <= 80000) {
+        day = 1;
+      } else if  (currentTime > 80000) {
+        day = round((currentTime-60000)/2000);
+      }
     }
     if ((currentTime > 120000) && (currentTime < 180000)) {
       months.remove(i);
       months.add(new String("May"));
+      if (currentTime <= 140000) {
+        day = 1;
+      } else if  (currentTime > 140000) {
+        day = round((currentTime-120000)/2000);
+      }    
     }
     if ((currentTime > 180000) && (currentTime < 240000)) {
       months.remove(i);
       months.add(new String("June"));
+      if (currentTime <= 200000) {
+        day = 1;
+      } else if  (currentTime > 200000) {
+        day = round((currentTime-180000)/2000);
+      }    
     }
     if ((currentTime > 240000) && (currentTime < 300000)) {
       months.remove(i);
       months.add(new String("July"));
+      if (currentTime <= 260000) {
+        day = 1;
+      } else if  (currentTime > 260000) {
+        day = round((currentTime-240000)/2000);
+      }    
     }
     if ((currentTime > 300000) && (currentTime < 360000)) {
       months.remove(i);
       months.add(new String("August"));
+      if (currentTime <= 320000) {
+        day = 1;
+      } else if  (currentTime > 320000) {
+        day = round((currentTime-300000)/2000);
+      }    
     }
   }
 }
