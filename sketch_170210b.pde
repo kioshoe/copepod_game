@@ -451,12 +451,18 @@ void screenNine() {
   makeBubbles();
   running = false;
   
-  String stageName = "Carlos starved to death.";
+  String info = "Hatched from eggs, copepod begin their lives as nauplius larvae. The nauplii will moult five or six times before turning into a copepodid. A copepodid will moult another five times before taking on its adult form. This process can take anywhere between a week to a year depending on the copepod species and its environmental conditions.";
   textSize(25);
   fill(255);
-  textAlign(CENTER, TOP);
-  text(stageName, width/2, 200);
+  textAlign(LEFT, TOP);
+  text(info, 30, height/1.75, width-30, height);
   
+  image(egg, 130, 250, 50*egg.width/egg.height, 50*egg.width/egg.height);
+  image(egg, 150, 220, 50*egg.width/egg.height, 50*egg.width/egg.height);
+  image(egg, 165, 275, 50*egg.width/egg.height, 50*egg.width/egg.height);
+  image(copepod[0], 370, 250, 75*copepod[0].width/copepod[0].height, 75*copepod[0].width/copepod[0].height);
+  image(copepod[1], 600, 250, 150*copepod[1].width/copepod[1].height, 150*copepod[1].width/copepod[1].height);
+  image(copepod[2], 850, 250, 150*copepod[2].width/copepod[2].height, 150*copepod[2].width/copepod[2].height);
 }
 
 void makeBubbles() {
