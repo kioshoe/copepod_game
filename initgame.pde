@@ -1,5 +1,6 @@
 /* @pjs preload = "adult.png, copepodid.png, nauplii.png, egg.png, death.png, bubble.png, ceratium.png, coccolithus.png, coscinodiscus.png, dinophysis.png, skeletonema.png"; */
 
+//Variable Declaration
 color b1, b2, e1;
 
 PImage[] copepod = new PImage[3];
@@ -26,8 +27,7 @@ int spawnTimer;
 Copepod player;
 Food food;
 
-
-
+//Sets up canvas and loads graphics
 void setup() {
   size(1024, 640);
   b1 = color(0, 102, 204);
@@ -63,6 +63,7 @@ void setup() {
 
 }
 
+//Creates multiple screens that use if statements & boolean variables to determine which screen should be displayed
 void draw() {
   switch(currentScreen) {
   case 0: screenZero(); break;
@@ -161,6 +162,7 @@ void screenZero() {
   player.edge();
   player.display();
 }
+
 //Instructions
 void screenOne() {
   linearGradient(0, 0, width, height, b1, b2);
@@ -241,6 +243,7 @@ void screenOne() {
   text(dir, width/2, height/2 + 140);
 }
 
+//Stage One: Nauplii Stage
 void screenTwo() {
   linearGradient(0, 0, width, height, b1, b2);
   makeBubbles();
@@ -465,6 +468,7 @@ void screenNine() {
   image(copepod[2], 850, 250, 150*copepod[2].width/copepod[2].height, 150*copepod[2].width/copepod[2].height);
 }
 
+//Bubble Function
 void makeBubbles() {
   int bubbleTime = 0;
   for (int i = bubbles.size()-1; i >=0; i--) {
@@ -480,6 +484,7 @@ void makeBubbles() {
   }
 }
 
+//Spawns food
 void makeFood() {  
   for (int i = foods.size()-1; i >= 0; i--) {
     Food food = foods.get(i);
